@@ -3,21 +3,21 @@ import tiktoken
 from loguru import logger
 
 from langchain.chains import ConversationalRetrievalChain
-from langchain_community.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI
 
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.document_loaders import Docx2txtLoader
-from langchain_community.document_loaders import UnstructuredPowerPointLoader
+from langchain.document_loaders import PyPDFLoader
+from langchain.document_loaders import Docx2txtLoader
+from langchain.document_loaders import UnstructuredPowerPointLoader
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 
 from langchain.memory import ConversationBufferMemory
-from langchain_community.vectorstores import FAISS
+from langchain.vectorstores import FAISS
 
 # from streamlit_chat import message
-from langchain_community.callbacks import get_openai_callback
-from langchain_community.chat_message_histories import StreamlitChatMessageHistory
+from langchain.callbacks import get_openai_callback
+from langchain.memory import StreamlitChatMessageHistory
 
 def main():
     st.set_page_config(
@@ -41,7 +41,7 @@ def main():
         process = st.button("Process")
     if process:
         if not openai_api_key:
-            st.info("key")
+            st.info("Please add your OpenAI API key to continue.")
             st.stop()
         files_text = get_text(uploaded_files)
         text_chunks = get_text_chunks(files_text)
